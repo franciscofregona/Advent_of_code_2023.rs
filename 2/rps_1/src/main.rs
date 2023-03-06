@@ -22,8 +22,6 @@ fn main() -> std::io::Result<()> {
 }
 
 fn calculate(theirs: &str, mine: &str) -> u128 {
-    // let theirs: u128 = theirs.trim().parse().unwrap_or_default();
-    // let mine: u128 = mine.trim().parse().unwrap_or_default();
     match mine {
         "X" => {
             1 + match theirs {
