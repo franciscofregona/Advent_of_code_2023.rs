@@ -12,8 +12,8 @@ fn main() -> std::io::Result<()> {
         let half: usize = line.len() / 2;
         let first = &line[0..half];
         let second = &line[half..];
-        let mixed_char: char = _find_mixed_char(first, second);
-        sum += u128::from(_priority(mixed_char));
+        let mixed_char: char = find_mixed_char(first, second);
+        sum += u128::from(priority(mixed_char));
     }
 
     println!("{sum}");
@@ -24,7 +24,7 @@ fn main() -> std::io::Result<()> {
 /*
 TODO: Change this method to return a Result(char,E) instead.
 */
-fn _find_mixed_char(_first_group: &str, _second_group: &str) -> char {
+fn find_mixed_char(_first_group: &str, _second_group: &str) -> char {
     for a_char in _first_group.chars() {
         if _second_group.contains(a_char) {
             return a_char;
@@ -33,13 +33,13 @@ fn _find_mixed_char(_first_group: &str, _second_group: &str) -> char {
     panic!("No repeated char found.");
 }
 
-fn _priority(_c: char) -> u32 {
+fn priority(_c: char) -> u32 {
     let b: u32 = _c.into();
-    if b >= 97 && b <= 122 {
-        return b - 96;
-    } else if b >= 65 && b <= 90 {
-        return b - 38;
+    if (97..=122).contains(&b) {
+        b - 96
+    } else if (65..=90).contains(&b) {
+        b - 38
     } else {
-        return 0;
+        0
     }
 }
